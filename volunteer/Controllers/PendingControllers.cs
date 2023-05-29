@@ -3,7 +3,7 @@ using volunteer.Data;
 using volunteer.DTO;
 using volunteer.Models;
 
-namespace Massarat.Controllers
+namespace   volunteer.Controllers
 {
     public class PendingPostController : Controller
     {

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using volunteer.Models;
 
 namespace volunteer.Data;
 
-public partial class VolunteerContext : DbContext
+public partial class VolunteerContext : IdentityDbContext
 {
     public VolunteerContext()
     {
@@ -30,6 +32,16 @@ public partial class VolunteerContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+
+
+
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<IdentityUserLogin<string>>()
+            .HasKey(l => new { l.LoginProvider, l.ProviderKey, l.UserId });
+
+
         modelBuilder.Entity<Aprovedpost>(entity =>
         {
             entity.Property(e => e.ApprovedPostId).ValueGeneratedNever();
@@ -66,4 +78,6 @@ public partial class VolunteerContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+  
+
 }
